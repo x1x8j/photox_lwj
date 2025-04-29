@@ -1,0 +1,21 @@
+Django==4.1.7
+djangorestframework==3.14.0
+djangorestframework-simplejwt==5.2.0
+
+drf-yasg==1.21.4  # Swagger API 文档生成
+python-dotenv==0.21.1  # 环境变量管理
+mysqlclient==2.2.7
+gunicorn==23.0.0
+django-cors-headers
+Pillow
+
+
+qiniu==7.16.0 # 七牛云 SDK
+requests==2.32.3
+torch
+torchvision
+sympy
+
+
+django-storages[qiniu]
+

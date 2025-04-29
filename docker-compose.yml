@@ -1,0 +1,32 @@
+# docker-compose.yml
+
+services:
+  # Django 应用服务
+  web:
+    build: .
+    container_name: django_web_dev
+    # command: python manage.py runserver 0.0.0.0:8000
+    command: gunicorn image_repo_backend.wsgi:application --bind 0.0.0.0:8000 --workers 4
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    env_file:
+      - ./.env.dev
+    depends_on:
+      - db # 依赖关系不变
+
+  # ---> 数据库服务 (改为 MySQL) <---
+  db:
+    image: mysql:8.0 # 使用官方 MySQL 8.0 镜像
+    container_name: mysql_db_dev
+    volumes:
+      - mysql_data:/var/lib/mysql/ # MySQL 数据持久化目录
+    ports:
+      - "3306:3306" # 可选：映射 MySQL 默认端口 3306
+    env_file:
+      - ./.env.dev # MySQL 需要的环境变量
+
+# ---> 修改命名卷名称 <---
+volumes:
+  mysql_data: # 使用新的卷名

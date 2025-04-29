@@ -1,0 +1,11 @@
+.env.dev
+# 忽略 Python 编译文件
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+
+# PyCharm IDE 文件
+.idea/
+
+
